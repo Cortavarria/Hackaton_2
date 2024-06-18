@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
@@ -5,28 +7,61 @@ public class Main {
 
     PhoneBook phoneBook = new PhoneBook();
 
-    phoneBook.addContact(new Contact("María", 12345678));
-    phoneBook.addContact(new Contact("Arturo", 987654321));
-    phoneBook.addContact(new Contact("Edwar", 456789123));
+    Scanner scanner = new Scanner(System.in);
+    int option;
+    do {
+      System.out.println("\n PHONE BOOK");
+      System.out.println("1. Add contact");
+      System.out.println("2. List contacts");
+      System.out.println("3. Search contact by name");
+      System.out.println("4. Delete contact");
+      System.out.println("5. Check if the phone book is full");
+      System.out.println("6. Check if the phone book has empty places");
+      System.out.println("0. Exit");
+      System.out.print("Select an option: ");
+
+      option = scanner.nextInt();
+      scanner.nextLine();
+
+      switch(option) {
+        case 1:
+          System.out.println("Please add a name: ");
+          String nameContact = scanner.nextLine();
+          System.out.println("Please add a phone number: ");
+          int phoneNumber = scanner.nextInt();
+          phoneBook.addContact(new Contact(nameContact, phoneNumber));
+          break;
+
+        case 2:
+          System.out.println("Your PhoneBook");
+          break;
+
+        case 3:
+          System.out.println("Type the name to search");
+          String nameToSearch = scanner.nextLine();
+
+          break;
+
+        case 4:
+          System.out.println("Type the name to delete");
+          String nameToDelete = scanner.nextLine();
+
+          break;
+
+        case 5:
+          System.out.println("");
+          break;
+
+        case 6:
+          System.out.println();
+          break;
+
+        default:
+          System.out.println("This option is not available");
+
+      }
+    } while (option != 0);
 
 
-    phoneBook.contactsList();
-
-    phoneBook.addContact(new Contact("María", 456789789));
-
-    phoneBook.addContact(new Contact("Angélica", 456789789));
-    phoneBook.addContact(new Contact("Yobán", 456789789));
-    phoneBook.addContact(new Contact("Alejandro", 456789789));
-    phoneBook.addContact(new Contact("Natalia", 456789789));
-    phoneBook.addContact(new Contact("Lolo", 456789789));
-    phoneBook.addContact(new Contact("Rose", 456789789));
-    phoneBook.addContact(new Contact("Lola", 456789789));
-
-    phoneBook.addContact(new Contact("Carlos", 456789789));
-
-
-    phoneBook.contactsList();
-
-    phoneBook.isAvailable();
   }
 }

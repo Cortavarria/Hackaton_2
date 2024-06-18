@@ -7,37 +7,70 @@ public class PhoneBook {
     contacts = new ArrayList<>();
   };
 
-
+  // Method to add Contact into Arraylist
   public void addContact(Contact newContact) {
 
-    if (!isAvailable()) return;
+    if (isAvailable() == 0) {
+      System.out.println("Your phonebook is full");
+      return;
+    }
 
-    for(Contact contact : contacts) {
-      if (newContact.getName().equals(contact.getName())){
-        System.out.println("This contact name is already exist");
-        return;
-      };
-    };
+    if (isContactExist(newContact.getName())){
+      System.out.println("This contact is already exist, it has not been add");
+      return;
+    }
+
+    System.out.println("This contact has been add successfully");
 
     contacts.add(newContact);
 
   }
 
+  // Method to validate if contact exist
+  public boolean isContactExist (String name) {
+
+    for (Contact contact : contacts) {
+      if (name.equals(contact.getName())) return true;
+    }
+    return false;
+  }
+
+  // Method to show contacts list
   public void contactsList () {
+
       for(Contact contact : contacts) {
         System.out.println(contact);
       };
   }
 
-  public boolean isAvailable () {
+  // Method to show if contact list has an empty place
+  public int isAvailable () {
+
     if (contacts.size() < 10) {
       int placeAvalilable = 10 - contacts.size();
-      System.out.println("You can add " + placeAvalilable + " contacts");
-      return true;
+      return placeAvalilable;
     } else {
-      System.out.println("Your phonebook is full, you can't add more contacts");
-      return false;
+      return 0;
     }
+  }
+
+  public void searchContact (String name) {
+
+    if (!isContactExist(name)) return;
+
+    for (Contact contact : contacts) {
+      if (name.equals(contact.getName())) {
+        System.out.println(contact.getPhone());
+        return;
+      }
+    }
+  }
+
+  public void deleteContact (String name) {
+    if (!isContactExist(name)) return;
+
+    contacts.removeIf(contact -> contact.getName().equals(name));
+    System.out.println("Contact deleted sucessfully");
   }
 
 
