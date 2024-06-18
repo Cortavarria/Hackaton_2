@@ -38,9 +38,16 @@ public class PhoneBook {
   // Method to show contacts list
   public void contactsList () {
 
-      for(Contact contact : contacts) {
+    if (contacts.size() == 0) {
+      System.out.println("Your phonebook is empty");
+      return;
+    }
+
+    System.out.println("---My PhoneBook---");
+
+    for(Contact contact : contacts) {
         System.out.println(contact);
-      };
+    };
   }
 
   // Method to show if contact list has an empty place
@@ -56,18 +63,24 @@ public class PhoneBook {
 
   public void searchContact (String name) {
 
-    if (!isContactExist(name)) return;
+    if (!isContactExist(name)) {
+      System.out.println("This contact doesn't exist");
+      return;
+    }
 
     for (Contact contact : contacts) {
       if (name.equals(contact.getName())) {
-        System.out.println(contact.getPhone());
+        System.out.println("The number from " + name + " is " + contact.getPhone());
         return;
       }
     }
   }
 
   public void deleteContact (String name) {
-    if (!isContactExist(name)) return;
+    if (!isContactExist(name)) {
+      System.out.println("This contact doesn't exist");
+      return;
+    }
 
     contacts.removeIf(contact -> contact.getName().equals(name));
     System.out.println("Contact deleted sucessfully");

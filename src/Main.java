@@ -33,27 +33,35 @@ public class Main {
           break;
 
         case 2:
-          System.out.println("Your PhoneBook");
+          phoneBook.contactsList();
           break;
 
         case 3:
           System.out.println("Type the name to search");
           String nameToSearch = scanner.nextLine();
-
+          phoneBook.searchContact(nameToSearch);
           break;
 
         case 4:
           System.out.println("Type the name to delete");
           String nameToDelete = scanner.nextLine();
-
+          phoneBook.deleteContact(nameToDelete);
           break;
 
         case 5:
-          System.out.println("");
+          if (phoneBook.isAvailable() != 0) {
+            System.out.println("The phonebook is not full");
+          } else {
+            System.out.println("The phonebook is full");
+          }
           break;
 
         case 6:
-          System.out.println();
+          if (phoneBook.isAvailable() != 0) {
+            System.out.println("You can add " + phoneBook.isAvailable() + " contacts");
+          } else {
+            System.out.println("You can't add more contacts");
+          }
           break;
 
         default:
