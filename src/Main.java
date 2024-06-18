@@ -22,14 +22,19 @@ public class Main {
 
       option = scanner.nextInt();
       scanner.nextLine();
+      String nameContactInput;
 
       switch(option) {
+        case 0:
+          scanner.close();
+          System.out.println("Exit...");
+          break;
         case 1:
           System.out.println("Please add a name: ");
-          String nameContact = scanner.nextLine();
+          nameContactInput = scanner.nextLine();
           System.out.println("Please add a phone number: ");
           int phoneNumber = scanner.nextInt();
-          phoneBook.addContact(new Contact(nameContact, phoneNumber));
+          phoneBook.addContact(new Contact(nameContactInput, phoneNumber));
           break;
 
         case 2:
@@ -38,14 +43,14 @@ public class Main {
 
         case 3:
           System.out.println("Type the name to search");
-          String nameToSearch = scanner.nextLine();
-          phoneBook.searchContact(nameToSearch);
+          nameContactInput = scanner.nextLine();
+          phoneBook.searchContact(nameContactInput);
           break;
 
         case 4:
           System.out.println("Type the name to delete");
-          String nameToDelete = scanner.nextLine();
-          phoneBook.deleteContact(nameToDelete);
+          nameContactInput = scanner.nextLine();
+          phoneBook.deleteContact(nameContactInput);
           break;
 
         case 5:

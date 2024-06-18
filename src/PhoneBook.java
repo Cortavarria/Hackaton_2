@@ -29,10 +29,14 @@ public class PhoneBook {
   // Method to validate if contact exist
   public boolean isContactExist (String name) {
 
+    String nameToLower = name.toLowerCase();
+
     for (Contact contact : contacts) {
-      if (name.equals(contact.getName())) return true;
+      String contactToLower = contact.getName().toLowerCase();
+      if (nameToLower.equals(contactToLower)) return true;
     }
-    return false;
+      return false;
+
   }
 
   // Method to show contacts list
@@ -61,6 +65,7 @@ public class PhoneBook {
     }
   }
 
+  // Method to search an user at the contact list
   public void searchContact (String name) {
 
     if (!isContactExist(name)) {
@@ -69,13 +74,14 @@ public class PhoneBook {
     }
 
     for (Contact contact : contacts) {
-      if (name.equals(contact.getName())) {
-        System.out.println("The number from " + name + " is " + contact.getPhone());
+      if (name.toLowerCase().equals(contact.getName().toLowerCase())) {
+        System.out.println("The number from " + contact.getName() + " is " + contact.getPhone());
         return;
       }
     }
   }
 
+  // Method to delete an user from contact list
   public void deleteContact (String name) {
     if (!isContactExist(name)) {
       System.out.println("This contact doesn't exist");
@@ -85,7 +91,5 @@ public class PhoneBook {
     contacts.removeIf(contact -> contact.getName().equals(name));
     System.out.println("Contact deleted sucessfully");
   }
-
-
 
 }
